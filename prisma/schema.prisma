@@ -63,3 +63,17 @@ model ChamberLot {
 
     @@map("chamber_lot")
 }
+
+//* Model - Position
+model Position {
+    id               String   @id @default(uuid()) @db.Uuid
+    bookingId        String   @unique @db.Uuid
+    storageReceiptId String   @unique @db.Uuid
+    chamberId        String   @db.Uuid
+    loadingPosition  String   @db.VarChar(15)
+    sacks            Int
+    note             String?  @db.VarChar(150)
+    createdAt        DateTime @default(now()) @db.Timestamptz
+
+    @@map("position")
+}
