@@ -22,8 +22,8 @@ model Farmer {
     fatherName String   @db.VarChar(50)
     phone      String   @unique @db.VarChar(15)
     address    String
-    createdAt  DateTime @default(now()) @db.Timestamp
-    updatedAt  DateTime @updatedAt @db.Timestamp
+    createdAt  DateTime @default(now()) @db.Timestamptz
+    updatedAt  DateTime @updatedAt @db.Timestamptz
 
     @@map("farmer")
 }
@@ -34,8 +34,8 @@ model Agent {
     name      String   @db.VarChar(50)
     phone     String   @unique @db.VarChar(15)
     isActive  Boolean  @default(true)
-    createdAt DateTime @default(now()) @db.Timestamp
-    updatedAt DateTime @db.Timestamp
+    createdAt DateTime @default(now()) @db.Timestamptz
+    updatedAt DateTime @db.Timestamptz
 
     @@map("agent")
 }
@@ -45,7 +45,21 @@ model Season {
     id        String       @id @default(uuid()) @db.Uuid
     year      String       @unique @db.VarChar(9)
     status    SeasonStatus
-    createdAt DateTime     @default(now()) @db.Timestamp
+    createdAt DateTime     @default(now()) @db.Timestamptz
 
     @@map("season")
+}
+
+//* Model - ChamberLot
+model ChamberLot {
+    id             String   @id @default(uuid()) @db.Uuid
+    floorNo        Int      @db.SmallInt
+    chamberNo      Int      @db.SmallInt
+    lotNo          Int      @db.SmallInt
+    capacitySacks  Int      @db.SmallInt
+    capacityWeight Decimal  @db.Decimal(8, 2)
+    createdAt      DateTime @default(now()) @db.Timestamptz
+    updatedAt      DateTime @updatedAt @db.Timestamptz
+
+    @@map("chamber_lot")
 }
