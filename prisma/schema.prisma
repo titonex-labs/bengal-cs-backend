@@ -7,6 +7,13 @@ datasource db {
     provider = "postgresql"
 }
 
+//* Enum - SeasonStatus
+enum SeasonStatus {
+    UPCOMING
+    ACTIVE
+    ENDED
+}
+
 //* Model - Farmer
 model Farmer {
     id         String   @id @default(uuid()) @db.Uuid
@@ -31,4 +38,14 @@ model Agent {
     updatedAt DateTime @db.Timestamp
 
     @@map("agent")
+}
+
+//* Model - Season
+model Season {
+    id        String       @id @default(uuid()) @db.Uuid
+    year      String       @unique @db.VarChar(9)
+    status    SeasonStatus
+    createdAt DateTime     @default(now()) @db.Timestamp
+
+    @@map("season")
 }
