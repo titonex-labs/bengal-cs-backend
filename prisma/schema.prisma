@@ -77,3 +77,14 @@ model Position {
 
     @@map("position")
 }
+
+//* Model - PositionShift
+model PositionShift {
+    id         String   @id @default(uuid()) @db.Uuid
+    positionId String   @db.Uuid
+    shiftNo    Int      @db.SmallInt
+    note       String?  @db.VarChar(150)
+    shiftedAt  DateTime @default(now()) @db.Timestamptz
+
+    @@map("position_shift")
+}
