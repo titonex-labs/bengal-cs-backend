@@ -6,5 +6,7 @@ const router = Router();
 
 // POST /
 router.post("/", chamberLotsController.createChamberLot);
+// GET /
+router.get("/", chamberLotsController.getChamberLots);
 
 export { router as chamberLotsRouter };

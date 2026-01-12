@@ -11,6 +11,14 @@ const createChamberLot = async (data: Omit<ChamberLot, "id" | "createdAt" | "upd
 	return result;
 };
 
-const chamberLotsService = { createChamberLot };
+//* Get Chamber Lots
+const getChamberLots = async () => {
+	// Retrieve all chamber lots from BD
+	const result = await prisma.chamberLot.findMany();
+	// Return result
+	return result;
+};
+
+const chamberLotsService = { createChamberLot, getChamberLots };
 
 export { chamberLotsService };
